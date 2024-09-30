@@ -18,3 +18,8 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'email', 'username', 'password', 'password_confirmation')
+
+class TeacherProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TeacherProfile
+        fields = ('id', 'user', 'subject', 'teach_fname', 'teach_lname', 'teach_dob',)
