@@ -4,7 +4,13 @@ from django.contrib.auth import password_validation
 from django.contrib.auth.hashers import make_password
 
 
+class TeacherProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TeacherProfile
+        fields = ('id', 'user', 'subject', 'teach_fname', 'teach_lname', 'teach_dob',)
+
 class UserSerializer(serializers.ModelSerializer):
+    teacher_profile = TeacherProfileSerializer(read_only=True)  
     password = serializers.CharField(write_only=True)
     password_confirmation = serializers.CharField(write_only=True)
     def validate(self, data):
@@ -17,9 +23,13 @@ class UserSerializer(serializers.ModelSerializer):
         return data
     class Meta:
         model = User
-        fields = ('id', 'email', 'username', 'password', 'password_confirmation')
+        fields = ('id', 'email', 'username', 'password', 'password_confirmation', 'is_teacher', 'teacher_profile',)
 
-class TeacherProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TeacherProfile
-        fields = ('id', 'user', 'subject', 'teach_fname', 'teach_lname', 'teach_dob',)
+
+#! Below: meant for future updates
+
+        # def __init__(self, *args, **kwargs):
+        #     super().__init__(*args, **kwargs)
+        #     request = self.context.get('request', None)
+        #     if request and request.user.is_superuser:
+        #         self.fields['teacher_profile'].read_only = False
