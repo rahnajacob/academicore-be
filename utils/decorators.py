@@ -15,5 +15,5 @@ def handle_exceptions(handler_func):
         except Exception as e:
             print(e.__class__.__name__)
             print(e)
-            return Response("unknown error occured", 500)
+            return Response(e, 500)
     return wrapper

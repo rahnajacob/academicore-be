@@ -39,11 +39,10 @@ class CourseRetrieveUpdateDestroyView(APIView):
     @handle_exceptions
     def put(self, request, pk):
         course_to_update = Course.objects.get(pk=pk)
-        #! here
         if course_to_update.owner != request.user and request.user.is_staff == False:
-            #print('on fail req user', request.user.is_staff, course_to_update.owner)
+            print('on fail req user', request.user.is_staff, course_to_update.owner)
             raise PermissionDenied()
-        #print('on succ req user', request.user.is_staff, course_to_update.owner)
+        print('on succ req user', request.user.is_staff, course_to_update.owner)
         serialized_course= CourseSerializer(course_to_update, data = request.data, partial=True)
         if serialized_course.is_valid():
             serialized_course.save()
@@ -54,9 +53,9 @@ class CourseRetrieveUpdateDestroyView(APIView):
     def delete(self, request, pk):
         course_to_delete= Course.objects.get(pk=pk)
         if course_to_delete.owner != request.user and request.user.is_staff == False:
-            #print('on fail req user', request.user.is_staff, course_to_delete.owner)
+            print('on fail req user', request.user.is_staff, course_to_delete.owner)
             raise PermissionDenied()
         print('Deleting:', course_to_delete)
         course_to_delete.delete()
-        return Response(status=204)
+        return Response("Deleted!",status=204)
 
