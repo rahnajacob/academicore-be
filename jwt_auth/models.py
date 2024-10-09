@@ -23,7 +23,7 @@ class User(AbstractUser):
 
 class TeacherProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    subject = models.CharField(max_length=30, choices=SUBJECT_CHOICES, default="SELECT")
+    subject = models.CharField(max_length=50, choices=SUBJECT_CHOICES, default="SELECT")
     teach_fname = models.CharField(max_length=50)
     teach_lname = models.CharField(max_length=50)
     teach_dob = models.DateField(null=True, blank=True)
