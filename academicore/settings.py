@@ -32,10 +32,16 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "https://academicore-be-7f66bcb677d8.herokuapp.com",
+    "https://academicore.netlify.app"
+]
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://127.0.0.1:8000"
+    "http://127.0.0.1:8000",
+    "https://academicore-be-7f66bcb677d8.herokuapp.com",
+    "https://academicore.netlify.app"
 ]
 
 
@@ -82,6 +88,13 @@ MIDDLEWARE = [
 #     "http://127.0.0.1:5173",]
 
 CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "https://academicore-be-7f66bcb677d8.herokuapp.com",
+    "https://academicore.netlify.app"
+]
 
 # CORS_ALLOW_ALL_HEADERS = True
 CORS_ALLOW_HEADERS = [
@@ -191,8 +204,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-CORS_ALLOW_ALL_ORIGINS = True
 
 django_on_heroku.settings(locals()) # put this last
 
