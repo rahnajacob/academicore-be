@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import django_on_heroku # put this at the top of the file
 from pathlib import Path
 import environ
 from datetime import timedelta
@@ -193,6 +193,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+django_on_heroku.settings(locals()) # put this last
 
 
 
