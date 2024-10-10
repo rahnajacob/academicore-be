@@ -65,6 +65,7 @@ class TeachSignUpView(APIView):
             refresh_token = str(refresh)
             print("Access Token:", access_token)
             print("Refresh Token:", refresh_token)
+            print("This is a push test from the auth sign up view")
 
         except IntegrityError as e:
             return JsonResponse({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
