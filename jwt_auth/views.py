@@ -21,7 +21,7 @@ class SignUpView(APIView):
                 'message':'User successful sign up',
                 'access': str(refresh.access_token),
                 'refresh': str(refresh)})
-        return Response(user_to_create.errors)
+        return Response("This is a push test", user_to_create.errors)
 
 #! below here is edited stuff
 
@@ -43,7 +43,7 @@ class TeachSignUpView(APIView):
 
         # Check if password and confirmation match
         if password != password_confirmation:
-            return JsonResponse({'error': 'Passwords do not match.'}, status=status.HTTP_400_BAD_REQUEST)
+            return JsonResponse({'error': 'Passwords do not match also this is a push test.'}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
             # Create the user
